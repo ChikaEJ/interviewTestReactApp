@@ -4,7 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import Main from "./Containers/Main/Main";
 import Header from "./Components/Header/Header";
 import Projects from "./Containers/Projects/Projects";
-import React, {useContext, useEffect, useState} from "react";
+import React, {useContext} from "react";
 import OtherUsers from "./Containers/OtherUsers/OtherUsers";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import Footer from "./Components/Footer/Footer";
@@ -13,10 +13,8 @@ import {AuthContext} from "./Contex/AuthContext";
 
 function App() {
     let isLogin: boolean = false;
-    const {token,updateValue} = useContext(AuthContext);
-    if (token) {
-        isLogin = true;
-    }
+    const {token} = useContext(AuthContext);
+    if (token) isLogin = true;
 
     return (
         <>

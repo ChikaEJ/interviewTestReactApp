@@ -1,5 +1,5 @@
 import React, {useContext, useEffect, useState} from 'react';
-import {Link, Routes, useNavigate} from 'react-router-dom';
+import {useNavigate} from 'react-router-dom';
 import styles from './Authorization.module.css';
 import {getUserData} from "../../Services/Services";
 import Spinner from "../../Components/Spinner/Spinner";
@@ -24,7 +24,6 @@ const Authorization = () => {
                         method: "GET"
                     });
                     const data: { access_token: string } = await response.json();
-                    console.log(data)
                     if (data.access_token) {
                         localStorage.setItem("accessToken", data.access_token);
                         await getUserData(data.access_token);
