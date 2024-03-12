@@ -2,7 +2,7 @@ import React, {useContext, useEffect, useState} from 'react';
 import {useNavigate} from 'react-router-dom';
 import styles from './Authorization.module.css';
 import {getUserData} from "../../Services/Services";
-import Spinner from "../../Components/Spinner/Spinner";
+import Spinner from "../../UIComponents/Spinner/Spinner";
 import {AuthContext} from "../../Contex/AuthContext";
 
 const CLIENT_ID: string = "3667ac15a3e0b621d8d0";

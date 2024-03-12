@@ -8,15 +8,15 @@ const sortRepos = (repos: IReposInfo[]) => {
     return repos.reduce((sortedRepos: IRepos, repo: IReposInfo) => {
         sortedRepos[repo.private ? 'Private' : 'Public'].push(repo);
         return sortedRepos;
-    }, { Public: [], Private: [] });
+    }, {Public: [], Private: []});
 };
-export const getRepos = async (repos: IRepos | undefined, setRepos:  React.Dispatch<React.SetStateAction<IRepos | undefined>>, setIsLoading: (isLoading: boolean)=> void, login?: string) => {
+export const getRepos = async (repos: IRepos | undefined, setRepos: React.Dispatch<React.SetStateAction<IRepos | undefined>>, setIsLoading: (isLoading: boolean) => void, login?: string) => {
     setIsLoading(true);
     const token = localStorage.getItem("accessToken");
     try {
         const url: string = "http://localhost:4000/getRepos?username=" + login;
         const authorization: string = Base64.encode(`Bearer ${token}`)
-        const response: Response = await fetch(url,{
+        const response: Response = await fetch(url, {
             method: "GET",
             headers: {
                 Authorization: authorization
@@ -30,11 +30,11 @@ export const getRepos = async (repos: IRepos | undefined, setRepos:  React.Dispa
     }
 };
 
-export const getUserRepos = async (repos: IReposInfo[] | undefined, setRepos:  React.Dispatch<React.SetStateAction<IReposInfo[]>>, setIsLoading: (isLoading: boolean)=> void, login?: string) => {
+export const getUserRepos = async (repos: IReposInfo[] | undefined, setRepos: React.Dispatch<React.SetStateAction<IReposInfo[]>>, setIsLoading: (isLoading: boolean) => void, login?: string) => {
     setIsLoading(true);
     try {
         const url: string = "http://localhost:4000/getUserRepos?username=" + login;
-        const response: Response = await fetch(url,{
+        const response: Response = await fetch(url, {
             method: "GET"
         });
         const data: IReposInfo[] = await response.json();
@@ -46,13 +46,13 @@ export const getUserRepos = async (repos: IReposInfo[] | undefined, setRepos:  R
 };
 
 
-export const getUsers = async (setIsLoading: (isLoading: boolean)=> void) => {
+export const getUsers = async (setIsLoading: (isLoading: boolean) => void) => {
     setIsLoading(true);
     const token = localStorage.getItem("accessToken");
     try {
         const url: string = "http://localhost:4000/getUsers"
         const authorization: string = Base64.encode(`Bearer ${token}`)
-        const response: Response = await fetch(url,{
+        const response: Response = await fetch(url, {
             method: "GET",
             headers: {
                 Authorization: authorization
@@ -67,13 +67,13 @@ export const getUsers = async (setIsLoading: (isLoading: boolean)=> void) => {
     }
 };
 
-export const getUser = async (setIsLoading: (isLoading: boolean)=> void, username: string) => {
+export const getUser = async (setIsLoading: (isLoading: boolean) => void, username: string) => {
     setIsLoading(true);
     const token = localStorage.getItem("accessToken");
     try {
         const url: string = "http://localhost:4000/getUser"
         const authorization: string = Base64.encode(`Bearer ${token}`)
-        const response: Response = await fetch(url + "?username=" + username,{
+        const response: Response = await fetch(url + "?username=" + username, {
             method: "GET",
             headers: {
                 Authorization: authorization
@@ -88,7 +88,7 @@ export const getUser = async (setIsLoading: (isLoading: boolean)=> void, usernam
     }
 };
 
-export const getUserData = async (token: string, setIsLoading?: (isLoading: boolean)=> void) => {
+export const getUserData = async (token: string, setIsLoading?: (isLoading: boolean) => void) => {
     if (setIsLoading) {
         setIsLoading(true);
     }
@@ -100,18 +100,18 @@ export const getUserData = async (token: string, setIsLoading?: (isLoading: bool
         }
     })).json();
     const userInfo = JSON.stringify(data);
-    localStorage.setItem("userInfo", userInfo );
+    localStorage.setItem("userInfo", userInfo);
     if (setIsLoading) {
         setIsLoading(false);
     }
 }
-export const changeUserInfo = (newUserInfo: IUserData)=> {
+export const changeUserInfo = (newUserInfo: IUserData) => {
     const userDataFromLocalStore = localStorage.getItem("userInfo");
     const newUserInfoString = JSON.stringify(newUserInfo);
     if (userDataFromLocalStore && userDataFromLocalStore !== newUserInfoString) {
         localStorage.setItem("userInfo", newUserInfoString)
     }
 }
-export const handleCancel = (setIsModalOpen: (isOpen: boolean)=>void) => {
+export const handleCancel = (setIsModalOpen: (isOpen: boolean) => void) => {
     setIsModalOpen(false);
 };

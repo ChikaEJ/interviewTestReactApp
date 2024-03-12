@@ -1,11 +1,9 @@
 import styles from './Projects.module.css';
 import React, {useEffect, useState} from 'react';
-import {Col, Row, Spin, Tabs} from "antd";
-import Project from "../../Components/Project/Project";
 import {getRepos} from "../../Services/Services";
 import {IRepos} from "../../Interfaces/IRepos";
-import Spinner from "../../Components/Spinner/Spinner";
-import MyTabs from "../../Components/Tabs/MyTabs";
+import Spinner from "../../UIComponents/Spinner/Spinner";
+import MyTabs from "../../UIComponents/Tabs/MyTabs";
 
 const Projects = () => {
     const [reposData, setReposData] = useState<IRepos>();

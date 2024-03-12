@@ -1,5 +1,5 @@
 import styles from "./UserInfo.module.css";
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import {IUserData} from "../../Interfaces/IUserData";
 import {Button, Modal} from "antd";
 import FormEditUserInfo from "../Form/FormEditUserInfo";

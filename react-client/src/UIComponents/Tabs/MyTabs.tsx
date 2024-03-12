@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from "../../Containers/Projects/Projects.module.css";
 import {Col, Row, Tabs} from "antd";
-import Project from "../Project/Project";
+import Project from "../../Components/Project/Project";
 import {IReposInfo} from "../../Interfaces/IReposInfo";
 import {IRepos} from "../../Interfaces/IRepos";
 interface ITabsProps{

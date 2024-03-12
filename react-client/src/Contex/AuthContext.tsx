@@ -4,9 +4,13 @@ interface MyContextValue {
     token: string;
     updateValue: (newValue: string) => void;
 }
-export const AuthContext = createContext<MyContextValue>({token: '', updateValue: ()=> {}});
 
-const MyProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const AuthContext = createContext<MyContextValue>({
+    token: '', updateValue: () => {
+    }
+});
+
+const MyProvider: React.FC<{ children: React.ReactNode }> = ({children}) => {
     const initialValue = localStorage.getItem("accessToken") || "";
     const [token, setToken] = useState<string>(initialValue);
 
@@ -15,7 +19,7 @@ const MyProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ token: token, updateValue }}>
+        <AuthContext.Provider value={{token: token, updateValue}}>
             {children}
         </AuthContext.Provider>
     );

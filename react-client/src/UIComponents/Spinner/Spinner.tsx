@@ -1,5 +1,3 @@
-import styles from "./Spinner.module.css"
-
 import React from 'react';
 import {Spin} from "antd";
 

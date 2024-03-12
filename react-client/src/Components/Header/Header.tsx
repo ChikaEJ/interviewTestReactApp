@@ -1,5 +1,4 @@
 import styles from './Header.module.css';
-
 import React, {useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
 import {AuthContext} from "../../Contex/AuthContext";
@@ -13,7 +12,7 @@ const Header = () => {
         navigate('/');
     }
     return (
-        <nav >
+        <nav>
             <div className={"container " + styles.nav}>
                 <a href="http://localhost:3000">
                     <div className={styles.navLogo}><img src="/images/githubL.png" alt="gitlubLogo"/></div>
@@ -25,7 +24,9 @@ const Header = () => {
                             <li><Link to="/main">Home</Link></li>
                             <li><Link to="/projects">My Projects</Link></li>
                             <li><Link to="/other_users">Other Users</Link></li>
-                            <li><button onClick={signOut}>Sign out</button></li>
+                            <li>
+                                <button onClick={signOut}>Sign out</button>
+                            </li>
                         </ul>
                         :
                         <ul className={styles.nav_list}>
