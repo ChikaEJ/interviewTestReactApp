@@ -1,12 +1,15 @@
 import styles from './Header.module.css';
 
-import React from 'react';
+import React, {useContext} from 'react';
 import {Link, useNavigate} from "react-router-dom";
+import {AuthContext} from "../../Contex/AuthContext";
 
 const Header = () => {
     const navigate = useNavigate();
+    const {token, updateValue} = useContext(AuthContext);
     const signOut = () => {
         localStorage.clear();
+        updateValue('');
         navigate('/');
     }
     return (
@@ -16,7 +19,7 @@ const Header = () => {
                     <div className={styles.navLogo}><img src="/images/githubL.png" alt="gitlubLogo"/></div>
                 </a>
                 {
-                    localStorage.getItem("accessToken")
+                    token
                         ?
                         <ul className={styles.nav_list}>
                             <li><Link to="/main">Home</Link></li>
@@ -26,7 +29,7 @@ const Header = () => {
                         </ul>
                         :
                         <ul className={styles.nav_list}>
-                            <li><Link to="/">Sign In</Link></li>
+                            <li><a href="http://localhost:3000">Sign in</a></li>
                         </ul>
                 }
             </div>
