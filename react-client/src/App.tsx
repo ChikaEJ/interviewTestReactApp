@@ -4,27 +4,29 @@ import {Route, Routes} from "react-router-dom";
 import Main from "./Containers/Main/Main";
 import Header from "./Components/Header/Header";
 import Projects from "./Containers/Projects/Projects";
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import OtherUsers from "./Containers/OtherUsers/OtherUsers";
 import ProtectedRoute from "./Components/ProtectedRoute/ProtectedRoute";
 import Footer from "./Components/Footer/Footer";
 import AuthPage from "./Containers/AuthPage/AuthPage";
+import {AuthContext} from "./Contex/AuthContext";
 
 
 function App() {
-    let haveToken: boolean = false;
-    if (localStorage.getItem("accessToken")){
-        haveToken = true;
+    let reload: boolean = false
+    const {token,updateValue} = useContext(AuthContext);
+    if (token) {
+        reload = true;
     }
-    const [isLogin, setIsLogin] = useState(haveToken);
+    const [isLogin, setIsLogin] = useState(reload);
+
+
     return (
         <>
             <Header/>
             <Routes>
                 <Route path="/auth" element={
-                    <ProtectedRoute isAllowed={!isLogin} redirectPath={"/"}>
-                        <AuthPage />
-                    </ProtectedRoute>
+                    <AuthPage/>
                 }/>
                 <Route path="/main" element={
                     <ProtectedRoute isAllowed={isLogin} redirectPath={"/"}>
@@ -39,9 +41,7 @@ function App() {
                     <ProtectedRoute isAllowed={isLogin} redirectPath={"/"}>
                         <OtherUsers/>
                     </ProtectedRoute>}/>
-                <Route path="/" element={
-                        <Authorization/>
-                }/>
+                <Route path="/" element={<Authorization/>}/>
                 <Route path="*" element={<p>There's nothing here: 404!</p>}/>
             </Routes>
             <Footer/>

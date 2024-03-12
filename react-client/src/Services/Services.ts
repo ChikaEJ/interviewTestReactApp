@@ -88,8 +88,10 @@ export const getUser = async (setIsLoading: (isLoading: boolean)=> void, usernam
     }
 };
 
-export const getUserData = async (setIsLoading: (isLoading: boolean)=> void, token: string) => {
-    setIsLoading(true);
+export const getUserData = async (token: string, setIsLoading?: (isLoading: boolean)=> void) => {
+    if (setIsLoading) {
+        setIsLoading(true);
+    }
     const authorization = Base64.encode("Bearer " + token)
     const data = await (await fetch('http://localhost:4000/getUserData', {
         method: "GET",
@@ -99,7 +101,9 @@ export const getUserData = async (setIsLoading: (isLoading: boolean)=> void, tok
     })).json();
     const userInfo = JSON.stringify(data);
     localStorage.setItem("userInfo", userInfo );
-    setIsLoading(false);
+    if (setIsLoading) {
+        setIsLoading(false);
+    }
 }
 export const changeUserInfo = (newUserInfo: IUserData)=> {
     const userDataFromLocalStore = localStorage.getItem("userInfo");
