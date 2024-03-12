@@ -8,12 +8,11 @@ import {AuthContext} from "../../Contex/AuthContext";
 const CLIENT_ID: string = "3667ac15a3e0b621d8d0";
 
 const Authorization = () => {
-    const [accessToken, setAccessToken] = useState<string | null>(localStorage.getItem('accessToken'));
     const [isLoading, setIsLoading] = useState(false);
     const navigate = useNavigate()
     const {token, updateValue} = useContext(AuthContext);
     useEffect(() => {
-        if (!accessToken) {
+        if (!token) {
             const getAccessToken = async () => {
                 const queryString: string = window.location.search;
                 const urlParams: URLSearchParams = new URLSearchParams(queryString);
@@ -29,7 +28,7 @@ const Authorization = () => {
                     if (data.access_token) {
                         localStorage.setItem("accessToken", data.access_token);
                         await getUserData(data.access_token);
-                        setAccessToken(data.access_token);
+                        updateValue(data.access_token)
                     }
                     setIsLoading(false);
                 } catch (error) {
@@ -47,7 +46,7 @@ const Authorization = () => {
         if (token){
             navigate('main')
         }
-    }, [accessToken]);
+    }, [token]);
 
     return (
         <div className={styles.authPage}>
