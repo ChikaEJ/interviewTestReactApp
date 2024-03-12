@@ -1,0 +1,10 @@
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+body {
+  background-image: url("../public/images/image1-1.png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
