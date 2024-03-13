@@ -31,9 +31,10 @@ If you run Windows OS open [gitBash](https://gitforwindows.org/) app or if Mac O
 
     npm install
 
-#### 6. Before you start the app you have to set up [ENV](https://www.codementor.io/@parthibakumarmurugesan/what-is-env-how-to-set-up-and-run-a-env-file-in-node-1pnyxw9yxj) fiel.
+#### 6. Before you start the app you have to set up [ENV](https://www.codementor.io/@parthibakumarmurugesan/what-is-env-how-to-set-up-and-run-a-env-file-in-node-1pnyxw9yxj) file.
+Navigate to root folder and create .env file.
 
-    touch proxyServer/.env
+    touch .env
 
 Open you .env file and copy this into the file
 
@@ -44,27 +45,7 @@ CLIENT_SECRET="your-client-secret";
 
 ```
 Replace 'you-client-id' and 'your-client-secret' with your own. [Here](https://support.heateor.com/get-github-client-id-client-secret/) you can find how you can get your clint id and client secret
-## WORNING!
-#### IF errors accuses because of not seeing .env file, just put your client_id and client_secret directrly in the server.js file
 
-```
-import cors from 'cors';
-import express from "express";
-import fetch from "node-fetch";
-import bodyParser from "body-parser";
-import {Base64} from "js-base64";
-
-const PORT = 4000
-const CLIENT_ID = "your_client_id"
-const CLIENT_SECRET = "your_client_secret"
-
-const app = express();
-
-app.use(cors());
-
-app.use(bodyParser.json());
-
-```
 
 
 #### 7. To run the app copy next command to your terminal: 
