@@ -44,6 +44,29 @@ CLIENT_SECRET="your-client-secret";
 
 ```
 Replace 'you-client-id' and 'your-client-secret' with your own. [Here](https://support.heateor.com/get-github-client-id-client-secret/) you can find how you can get your clint id and client secret
+## WORNING!
+#### IF errors accuses because of not seeing .env file, just put your client_id and client_secret directrly in the server.js file
+
+```
+import cors from 'cors';
+import express from "express";
+import fetch from "node-fetch";
+import bodyParser from "body-parser";
+import {Base64} from "js-base64";
+
+const PORT = 4000
+const CLIENT_ID = "your_client_id"
+const CLIENT_SECRET = "your_client_secret"
+
+const app = express();
+
+app.use(cors());
+
+app.use(bodyParser.json());
+
+```
+
+
 #### 7. To run the app copy next command to your terminal: 
 
     npm run start
