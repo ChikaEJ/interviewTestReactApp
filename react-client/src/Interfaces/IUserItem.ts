@@ -5,4 +5,5 @@ export interface IUserItem {
     html_url: string;
     node_id: string;
     repos_url: string;
+    id: number;
 }

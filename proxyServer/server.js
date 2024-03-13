@@ -92,7 +92,7 @@ app.get('/getUsers', async (req, res) => {
 app.get('/getUser', async (req, res) => {
     try {
         const authorization = Base64.decode(req.get("Authorization"));
-        const url = `https://api.github.com/users/${req.query.username}`;
+        const url = `https://api.github.com/users${req.query.username ? "/"+req.query.username : ''}`;
         const response = await fetch(url, {
             method: 'GET',
             headers: {

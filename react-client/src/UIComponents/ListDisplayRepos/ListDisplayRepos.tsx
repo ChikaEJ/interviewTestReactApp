@@ -13,6 +13,7 @@ const ListDisplayRepos: React.FC<IListDisplay> = ({data}) => {
                 renderItem={(repo: IReposInfo, index: number) => (
                     <List.Item>
                         <List.Item.Meta
+                            key={repo.name}
                             title={<a href={repo.html_url}>{repo.name}</a>}
                         />
                     </List.Item>

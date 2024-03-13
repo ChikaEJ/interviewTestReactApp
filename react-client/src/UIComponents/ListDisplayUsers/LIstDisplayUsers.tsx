@@ -15,11 +15,11 @@ const ListDisplayUsers: React.FC<IListDisplayUsersProps> = ({users, clickHandler
                     data={users}
                     height={400}
                     itemHeight={47}
-                    itemKey="node_id"
+                    itemKey="id"
                     onScroll={onScroll}
                 >
                     {(item: IUserItem) => (
-                        <List.Item key={item.node_id}>
+                        <List.Item key={item.id}>
                             <List.Item.Meta
                                 avatar={<Avatar src={item.avatar_url} />}
                                 title={<a href={item.html_url}>{item.login}</a>}
