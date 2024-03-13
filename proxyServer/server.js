@@ -4,10 +4,9 @@ import fetch from "node-fetch";
 import bodyParser from "body-parser";
 import {Base64} from "js-base64";
 
-
-const PORT = process.env.PORT || "4000"
-const CLIENT_ID = process.env.CLIENT_ID
-const CLIENT_SECRET = process.env["CLIENT_SECRET"]
+const PORT = 4000
+const CLIENT_ID = "here your client_id"
+const CLIENT_SECRET = "here your client_secret"
 
 const app = express();
 
