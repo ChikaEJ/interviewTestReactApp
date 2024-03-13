@@ -4,8 +4,6 @@ import fetch from "node-fetch";
 import bodyParser from "body-parser";
 import {Base64} from "js-base64";
 
-require('dotenv').config();
-
 
 const PORT = process.env.PORT || "4000"
 const CLIENT_ID = process.env.CLIENT_ID
