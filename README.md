@@ -31,7 +31,20 @@ If you run Windows OS open [gitBash](https://gitforwindows.org/) app or if Mac O
 
     npm install
 
-#### 6. To run the app type next command: 
+#### 6. Before you start the app you have to set up [ENV](https://www.codementor.io/@parthibakumarmurugesan/what-is-env-how-to-set-up-and-run-a-env-file-in-node-1pnyxw9yxj) fiel.
+
+    touch proxyServer/.env
+
+Open you .env file and copy this into the file
+
+```
+PORT=4000
+CLIENT_ID="you-client-id";
+CLIENT_SECRET="your-client-secret";
+
+```
+Replace 'you-client-id' and 'your-client-secret' with your own. [Here](https://support.heateor.com/get-github-client-id-client-secret/) you can find how you can get your clint id and client secret
+#### 7. To run the app copy next command to your terminal: 
 
     npm run start
 
@@ -66,6 +79,7 @@ Packages for Proxy Server:
 "dependencies": {
     "body-parser": "^1.20.2",
     "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "js-base64": "^3.7.7",
     "node-fetch": "^3.3.2"
