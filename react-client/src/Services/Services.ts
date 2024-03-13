@@ -4,6 +4,7 @@ import {IRepos} from "../Interfaces/IRepos";
 import {IReposInfo} from "../Interfaces/IReposInfo";
 import {IUserData} from "../Interfaces/IUserData";
 
+const TOKEN = localStorage.getItem('accessToken');
 const sortRepos = (repos: IReposInfo[]) => {
     return repos.reduce((sortedRepos: IRepos, repo: IReposInfo) => {
         sortedRepos[repo.private ? 'Private' : 'Public'].push(repo);
@@ -12,10 +13,9 @@ const sortRepos = (repos: IReposInfo[]) => {
 };
 export const getRepos = async (repos: IRepos | undefined, setRepos: React.Dispatch<React.SetStateAction<IRepos | undefined>>, setIsLoading: (isLoading: boolean) => void, login?: string) => {
     setIsLoading(true);
-    const token = localStorage.getItem("accessToken");
     try {
         const url: string = "http://localhost:4000/getRepos?username=" + login;
-        const authorization: string = Base64.encode(`Bearer ${token}`)
+    const authorization: string = Base64.encode(`Bearer ${TOKEN}`)
         const response: Response = await fetch(url, {
             method: "GET",
             headers: {
@@ -48,10 +48,9 @@ export const getUserRepos = async (repos: IReposInfo[] | undefined, setRepos: Re
 
 export const getUsers = async (setIsLoading: (isLoading: boolean) => void) => {
     setIsLoading(true);
-    const token = localStorage.getItem("accessToken");
     try {
         const url: string = "http://localhost:4000/getUsers"
-        const authorization: string = Base64.encode(`Bearer ${token}`)
+        const authorization: string = Base64.encode(`Bearer ${TOKEN}`)
         const response: Response = await fetch(url, {
             method: "GET",
             headers: {
@@ -69,10 +68,9 @@ export const getUsers = async (setIsLoading: (isLoading: boolean) => void) => {
 
 export const getUser = async (setIsLoading: (isLoading: boolean) => void, username: string) => {
     setIsLoading(true);
-    const token = localStorage.getItem("accessToken");
     try {
         const url: string = "http://localhost:4000/getUser"
-        const authorization: string = Base64.encode(`Bearer ${token}`)
+    const authorization: string = Base64.encode(`Bearer ${TOKEN}`)
         const response: Response = await fetch(url + "?username=" + username, {
             method: "GET",
             headers: {
@@ -105,11 +103,36 @@ export const getUserData = async (token: string, setIsLoading?: (isLoading: bool
         setIsLoading(false);
     }
 }
+
+export const userUpdate = async (setIsLoading?: (isLoading: boolean) => void) => {
+    if (setIsLoading) {
+        setIsLoading(true);
+    }
+    const userUpdateInfo = JSON.parse(localStorage.getItem("userInfo") || "[]")
+
+    const {company, name, location} = userUpdateInfo;
+    console.log(userUpdateInfo);
+    console.log(TOKEN)
+    const authorization = Base64.encode("Bearer " + TOKEN)
+    const data = await (await fetch(`http://localhost:4000/userUpdate?company=${company}&name=${name}&location=${location}`, {
+        method: "GET",
+        headers: {
+            authorization: authorization
+        }
+    })).json();
+    if (setIsLoading) {
+        setIsLoading(false);
+    }
+    console.log(data)
+    return data.statusMessage;
+}
+
 export const changeUserInfo = (newUserInfo: IUserData) => {
     const userDataFromLocalStore = localStorage.getItem("userInfo");
     const newUserInfoString = JSON.stringify(newUserInfo);
     if (userDataFromLocalStore && userDataFromLocalStore !== newUserInfoString) {
         localStorage.setItem("userInfo", newUserInfoString)
+        userUpdate()
     }
 }
 export const handleCancel = (setIsModalOpen: (isOpen: boolean) => void) => {

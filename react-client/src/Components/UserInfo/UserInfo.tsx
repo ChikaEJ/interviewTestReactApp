@@ -14,10 +14,9 @@ const UserInfo: React.FC<IUserData> = () => {
         setIsModalOpen(true);
     }, []);
     const onFinish = () => {
-        console.log("On Finish is called 1", userInfo.location)
         changeUserInfo(userInfo);
         setIsModalOpen(false);
-        console.log("On Finish is called 2", userInfo.location)
+
     }
 
     return (

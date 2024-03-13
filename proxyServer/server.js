@@ -11,7 +11,11 @@ const CLIENT_SECRET = "5bcaed3ae249e0968aaadcdb9411373975f9ee23";
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST", "PATCH", "PUT", "DELETE"],
+}));
+
 app.use(bodyParser.json());
 
 app.get('/getAccessToken', async function(req, res){
@@ -103,6 +107,37 @@ app.get('/getUser', async (req, res) => {
         res.json(data);
     } catch (error) {
         console.error(error);
+    }
+});
+app.get("/userUpdate", async (req, res) => {
+    try {
+        console.log("QUERY++++++++++++++++",req.query)
+        const { company, name, location } = req.query;
+        const authorization = Base64.decode(req.get("Authorization"));
+        const url = "https://api.github.com/user";
+        const response = await fetch(url, {
+            method: "PATCH",
+            headers: {
+                Authorization: authorization,
+                "Content-Type": "application/json",
+                "X-GitHub-Api-Version": "2022-11-28",
+            },
+            body: JSON.stringify({
+                company,
+                name,
+                location,
+            }),
+        });
+
+        if (!response.ok) {
+            throw new Error(`Error updating user: ${response.statusText}`);
+        }
+
+        const data = await response.json();
+        res.json({ message: "User updated successfully", data }); // Send response data
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: "Error updating user" }); // Handle errors
     }
 });
 

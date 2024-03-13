@@ -39,7 +39,7 @@ const Authorization = () => {
         }
     }, []);
     const loginWithGitHub = async () => {
-        window.location.assign(`https://github.com/login/oauth/authorize?scope=repo&client_id=${CLIENT_ID}`);
+        window.location.assign(`https://github.com/login/oauth/authorize?client_id=${CLIENT_ID}&scope=repo%20user`);
     };
     useEffect(() => {
         if (token){
