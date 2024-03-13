@@ -111,8 +111,6 @@ export const userUpdate = async (setIsLoading?: (isLoading: boolean) => void) =>
     const userUpdateInfo = JSON.parse(localStorage.getItem("userInfo") || "[]")
 
     const {company, name, location} = userUpdateInfo;
-    console.log(userUpdateInfo);
-    console.log(TOKEN)
     const authorization = Base64.encode("Bearer " + TOKEN)
     const data = await (await fetch(`http://localhost:4000/userUpdate?company=${company}&name=${name}&location=${location}`, {
         method: "GET",
@@ -123,7 +121,6 @@ export const userUpdate = async (setIsLoading?: (isLoading: boolean) => void) =>
     if (setIsLoading) {
         setIsLoading(false);
     }
-    console.log(data)
     return data.statusMessage;
 }
 

@@ -111,7 +111,6 @@ app.get('/getUser', async (req, res) => {
 });
 app.get("/userUpdate", async (req, res) => {
     try {
-        console.log("QUERY++++++++++++++++",req.query)
         const { company, name, location } = req.query;
         const authorization = Base64.decode(req.get("Authorization"));
         const url = "https://api.github.com/user";
@@ -134,10 +133,10 @@ app.get("/userUpdate", async (req, res) => {
         }
 
         const data = await response.json();
-        res.json({ message: "User updated successfully", data }); // Send response data
+        res.json({ message: "User updated successfully", data });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ message: "Error updating user" }); // Handle errors
+        res.status(500).json({ message: "Error updating user" });
     }
 });
 
