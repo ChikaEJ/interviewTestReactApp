@@ -16,7 +16,6 @@ const UserInfo: React.FC<IUserData> = () => {
     const onFinish = () => {
         changeUserInfo(userInfo);
         setIsModalOpen(false);
-
     }
 
     return (

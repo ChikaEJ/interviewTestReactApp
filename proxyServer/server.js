@@ -75,22 +75,6 @@ app.get('/getUserRepos', async (req, res) => {
     }
 });
 
-app.get('/getUsers', async (req, res) => {
-    try {
-        const authorization = Base64.decode(req.get("Authorization"));
-        const url = `https://api.github.com/users`;
-        const response = await fetch(url, {
-            method: 'GET',
-            headers: {
-                Authorization: authorization
-            }
-        });
-        const data = await response.json();
-        res.json(data);
-    } catch (error) {
-        console.error(error);
-    }
-});
 app.get('/getUser', async (req, res) => {
     try {
         const authorization = Base64.decode(req.get("Authorization"));

@@ -15,7 +15,7 @@ export const getRepos = async (repos: IRepos | undefined, setRepos: React.Dispat
     setIsLoading(true);
     try {
         const url: string = "http://localhost:4000/getRepos?username=" + login;
-    const authorization: string = Base64.encode(`Bearer ${TOKEN}`)
+        const authorization: string = Base64.encode(`Bearer ${TOKEN}`)
         const response: Response = await fetch(url, {
             method: "GET",
             headers: {
@@ -45,32 +45,11 @@ export const getUserRepos = async (repos: IReposInfo[] | undefined, setRepos: Re
     }
 };
 
-
-export const getUsers = async (setIsLoading: (isLoading: boolean) => void) => {
-    setIsLoading(true);
-    try {
-        const url: string = "http://localhost:4000/getUsers"
-        const authorization: string = Base64.encode(`Bearer ${TOKEN}`)
-        const response: Response = await fetch(url, {
-            method: "GET",
-            headers: {
-                Authorization: authorization
-            }
-        });
-        const data = await response.json();
-        setIsLoading(false);
-        return data;
-    } catch (error) {
-        console.error(error);
-        setIsLoading(false);
-    }
-};
-
 export const getUser = async (setIsLoading: (isLoading: boolean) => void, username: string) => {
     setIsLoading(true);
     try {
         const url: string = "http://localhost:4000/getUser"
-    const authorization: string = Base64.encode(`Bearer ${TOKEN}`)
+        const authorization: string = Base64.encode(`Bearer ${TOKEN}`)
         const response: Response = await fetch(url + "?username=" + username, {
             method: "GET",
             headers: {

@@ -1,13 +1,12 @@
 import styles from "./OtherUsers.module.css"
 import React, {useEffect, useState} from 'react';
-import {getUser, getUserRepos, getUsers, handleCancel} from "../../Services/Services";
+import {getUser, getUserRepos, handleCancel} from "../../Services/Services";
 import Spinner from "../../UIComponents/Spinner/Spinner";
 import {Input, Modal} from "antd";
 import {IReposInfo} from "../../Interfaces/IReposInfo";
 import ListDisplayRepos from "../../UIComponents/ListDisplayRepos/ListDisplayRepos";
 import {IUserItem} from "../../Interfaces/IUserItem";
 import ListDisplayUsers from "../../UIComponents/ListDisplayUsers/LIstDisplayUsers";
-import {ifError} from "node:assert";
 
 
 const OtherUsers = () => {
