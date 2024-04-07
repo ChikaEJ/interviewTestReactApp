@@ -9,7 +9,7 @@ const Projects = () => {
     const [reposData, setReposData] = useState<IRepos>();
     const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        getRepos(reposData, setReposData, setIsLoading);
+        getRepos(setReposData, setIsLoading);
     }, []);
 
     return (

@@ -45,7 +45,7 @@ const OtherUsers = () => {
     const clickHandler = async (login: string) => {
         try {
             setIsModalOpen(true)
-            await getUserRepos(reposData, setReposData, setIsLoading, login);
+            await getUserRepos(setReposData, setIsLoading, login);
         } catch (e) {
             console.error(e)
         }

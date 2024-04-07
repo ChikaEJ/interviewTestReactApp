@@ -6,7 +6,7 @@ import {IReposInfo} from "../../Interfaces/IReposInfo";
 import {IRepos} from "../../Interfaces/IRepos";
 interface ITabsProps{
     reposData: IRepos | undefined;
-    getRepos: (repos: IRepos | undefined, setRepos: React.Dispatch<React.SetStateAction<IRepos | undefined>>, setIsLoading: (isLoading: boolean) => void) => void;
+    getRepos: (setRepos: React.Dispatch<React.SetStateAction<IRepos | undefined>>, setIsLoading: (isLoading: boolean) => void) => void;
 }
 const MyTabs: React.FC<ITabsProps> = ({reposData, getRepos}) => {
     return (
